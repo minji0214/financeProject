@@ -2,7 +2,6 @@ import React from "react";
 import { Button } from "./button";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { Sheet, SheetContent, SheetTrigger } from "./sheet";
 
 type Props = {
 	href: string;

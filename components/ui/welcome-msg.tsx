@@ -2,7 +2,7 @@
 import React from "react";
 import { UserButton, ClerkLoaded, ClerkLoading, useUser } from "@clerk/nextjs";
 
-export default function WelcomeMsg() {
+export function WelcomeMsg() {
 	const { user, isLoaded } = useUser();
 	return (
 		<div className="space-y-2 mb-4">
@@ -11,7 +11,7 @@ export default function WelcomeMsg() {
 				{user?.firstName}
 			</h2>
 			<p className="text-sm lg:text-base text-[#89b6fd]">
-				this is your financial overview
+				This is your financial overview report
 			</p>
 		</div>
 	);
