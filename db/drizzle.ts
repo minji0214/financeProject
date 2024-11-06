@@ -7,4 +7,3 @@ export const db = drizzle(sql, {
 	schema,
 });
 
-const accounts2 = db.select().from(accounts);
