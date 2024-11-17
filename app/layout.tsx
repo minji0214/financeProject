@@ -3,7 +3,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { QueryProvider } from "@/providers/query-provider";
-
+import SheetProvider from "@/providers/sheet-provider";
+import { Toaster } from "@/components/ui/sonner";
 const geistSans = localFont({
 	src: "./fonts/GeistVF.woff",
 	variable: "--font-geist-sans",
@@ -33,6 +34,8 @@ export default function RootLayout({
 				>
 					{/* Queryclient는 useClient */}
 					<QueryProvider>
+						<SheetProvider />
+						<Toaster />
 						{/* children은 server에서 받아온다. */}
 						{children}
 					</QueryProvider>

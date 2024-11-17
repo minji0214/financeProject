@@ -4,7 +4,7 @@ import { db } from "@/db/drizzle";
 import { accounts, insertAccountSchema } from "@/db/schema";
 import { zValidator } from "@hono/zod-validator";
 import { eq } from "drizzle-orm";
-
+import { createId } from "@paralleldrive/cuid2";
 const app = new Hono()
 	.get("/", clerkMiddleware(), async (c) => {
 		const auth = getAuth(c);
@@ -26,13 +26,22 @@ const app = new Hono()
 	.post(
 		"/",
 		clerkMiddleware(),
-		zValidator("json", insertAccountSchema),
+		zValidator("json", insertAccountSchema.pick({ name: true })),
 		async (c) => {
 			const auth = getAuth(c);
+			const values = c.req.valid("json");
 			if (!auth?.userId) {
 				return c.json({ error: "Not authenticated" }, 401);
 			}
-			return c.json({});
+			const [data] = await db
+				.insert(accounts)
+				.values({
+					id: createId(),
+					userId: auth.userId,
+					...values,
+				})
+				.returning();
+			return c.json({ data });
 		}
 	);
 export default app;
