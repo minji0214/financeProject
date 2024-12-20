@@ -3,13 +3,17 @@ import { handle } from "hono/vercel";
 
 import accounts from "./accounts";
 import { HTTPException } from "hono/http-exception";
+import categories from "./categories";
 
 export const runtime = "edge";
 
 //app = hono. hono가 Overwrite를 한다.
 const app = new Hono().basePath("/api");
 
-const routes = app.route("/accounts", accounts);
+const routes = app
+	.route("/accounts", accounts)
+	.route("/categories", categories);
+    
 export const GET = handle(app);
 //Get =()=>{ return NextResponse} 이런 코드가 필요없게됨.
 export const POST = handle(app);

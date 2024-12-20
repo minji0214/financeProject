@@ -15,6 +15,13 @@
       "when": 1730804838416,
       "tag": "0001_spicy_barracuda",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1732857780502,
+      "tag": "0002_tired_madrox",
+      "breakpoints": true
     }
   ]
 }
